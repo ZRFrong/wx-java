@@ -1,0 +1,22 @@
+<!--pages/register/register.wxml-->
+<view class="kongbao-head">
+	<view class="left-icon" bindtap="goback"></view>手机认证
+</view>
+<view class="pape">
+	<form  bindsubmit="formSubmit">
+	  <view class="logo">
+	    <image src="{{userInfo.avatarUrl}}" class="yuan"></image>
+	    <view class="shuoming">{{userInfo.nickName}}</view>
+	  </view>
+	  <view class="shoujihao">
+	    <text class="qianmian">+86</text>
+	    <input name="phone" bindinput="addinput" placeholder="请输入手机号"></input>
+	  </view>
+	  <view class="yanzhengma">
+	    <input name="code" placeholder="请输入验证码"></input>
+	    <button class="{{jishi}}" disabled="{{smsFlag}}" bindtap="sendSms" data-phone="{{phone}}" >{{s}}</button>
+	  </view>
+	  <button class="qurren" form-type="submit">确认</button>
+	</form>
+</view>
+

@@ -1,0 +1,20 @@
+<view class="manage">
+  <view class="kongbao-head">
+    <view class="left-icon" bindtap="goback"></view>智慧农业
+  </view>
+  <view class="pape">
+<<<<<<< HEAD
+    <view bindlongpress="bindlongpress" bindtap="editLand" data-id="{{item.dbLandId}}" class="touch-item" wx:for="{{list}}" wx:key="dbLandId">
+=======
+    <view bindlongpress="bindlongpress" bindtap="editLand" data-id="{{item.landId}}" class="touch-item" wx:for="{{list}}" wx:key="landId">
+>>>>>>> java版
+      <view class="content">
+        <text class="dlf"></text> {{item.nickName}}
+      </view>
+      <view class="del" catchtap="del" data-index="{{index}}">删除</view>
+    </view>
+
+  </view>
+  <view class="tianjiatudi" bindtap="addLand">+点击添加</view>
+  <button class="wancheng" bindtap="complete">完成</button>
+</view>

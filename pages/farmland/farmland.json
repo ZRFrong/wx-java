@@ -1,0 +1,10 @@
+{
+<<<<<<< HEAD
+  "usingComponents": {
+     "popup": "/component/popup/popup"
+  }
+=======
+  "usingComponents": {},
+  "enablePullDownRefresh":true
+>>>>>>> java版
+}

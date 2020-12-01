@@ -1,0 +1,767 @@
+<!--pages/dome/dome.wxml-->
+<wxs src="./farmland.wxs" module="tools" />
+<<<<<<< HEAD
+<view class="modal-mask" catchtouchmove="preventTouchMove" wx:if="{{change_ping}}"></view>
+=======
+
+>>>>>>> java版
+<view class="pape">
+  <view class="swipers">
+    <image src="../../image/banner111.png" style="width:100%;height:370rpx;" class="slide-image" />
+    <text class="biaoti">农业</text>
+    <text class="weizhi"></text>
+    <text class="xiqi">{{city}}</text>
+<<<<<<< HEAD
+=======
+    <image class="saomiao" src="../../image/saoma.png" bindtap="saoma"></image>
+>>>>>>> java版
+  </view>
+
+  <view class="kuang">
+    <view class="kuang-center">
+      <view class="kuang-left fl">
+        <image class="left-xue" src="{{weather.weather_pic}}"></image>
+      </view>
+      <view class="fr kuang-right">
+        <view class="kuang-1 fl">
+          <view class="wewndu">温度(℃)</view>
+          <text class="shuzi">{{weather.temperature}}</text>
+        </view>
+        <view class="kuang-1 fl">
+          <view class="wewndu">PM2.5</view>
+          <text class="shuzi">{{weather.aqiDetail.pm2_5}}</text>
+        </view>
+        <view class="fl kuang-2">
+          <view class="wewndu">风向</view>
+          <text class="shuzi2">{{wind}}</text>
+        </view>
+
+      </view>
+    </view>
+  </view>
+  <view class="land">
+    <view class="nones" bindtap="openaddland" style="display:{{nones}}">
+      <image src="../../image/nothingland.png" />
+    </view>
+    <view>
+      <!-- 水肥一体总控台 -->
+<<<<<<< HEAD
+      <view class="integration">
+=======
+      <view class="integration" style="display:none;">
+>>>>>>> java版
+        <!-- 上 -->
+        <view class="top clearfix" bindtap="clickButtton">
+          <view class="left">
+            <view class="land_p">水肥一体总控台</view>
+            <view class="land_p2">在运行{{shed}}个棚</view>
+          </view>
+          <view class="right">
+            <view>
+              <view>
+                <image class="land_image" src="/image/yes.png"></image>
+                <view class="land_sb">设备正常</view>
+              </view>
+              <!-- <view>
+                <image class="land_image" src="/image/yichang.png"></image>
+                <view class="land_sb">设备异常</view>
+              </view> -->
+            </view>
+
+          </view>
+        </view>
+        <!-- 下 -->
+        <view class="bottom">
+          <view class="title">— 水肥总控台 —</view>
+          <view class="single">
+            <view class="ping" bindtap="change_ping">
+              <image src="/image/pingzi.png"></image>
+              <view class="color" style="background-color:{{color}}"></view>
+              <view class="shade" style="height:{{height}}rpx"></view>
+              <view wx:if="{{ping}}" class="text">请补充</view>
+              <text class="num" style="color:{{fz_color}}">{{standing_crop}}L</text>
+            </view>
+            <view class="name">{{fertilizer_name}}</view>
+            <view class="concentration">浓度{{concentration}}%</view>
+
+            <view class="input">
+              <input type="number" placeholder-style="color:#999" placeholder="请输入施肥量" value="{{fertilizing}}"
+                catchfocus="inp_focus" bindblur="inp_focusx"></input>
+            </view>
+
+            <view class="xian" wx:if="{{xian}}"></view>
+
+
+            <view class="guandao">
+              <image src="/image/guandao.png"></image>
+            </view>
+
+
+
+            <view class="btn" bindtap="fertilize">
+              <view class="ball">
+                <view class="ball_min">
+
+                  <text>施肥</text>
+
+                </view>
+              </view>
+            </view>
+
+            <view wx:if="{{list}}">
+              <image class="guandao1" src="/image/guandao1.png"></image>
+            </view>
+
+          </view>
+
+<<<<<<< HEAD
+
+=======
+          <!-- 水肥详情 -->
+          <view class="modal-mask" catchtouchmove="preventTouchMove" wx:if="{{change_ping}}"></view>
+>>>>>>> java版
+          <form class="detail" wx:if="{{change_ping}}" bindsubmit="change_detail">
+            <view class="li">
+              <view>肥料名称</view>
+              <input style="width:250rpx;text-align:right" type="text" value="{{fertilizer_name}}" name="name"></input>
+            </view>
+            <view class="li">
+              <view>肥料捅体积</view>
+              <view>500L</view>
+            </view>
+            <view class="li">
+              <view>肥料现有量</view>
+              <input style="width:100rpx;text-align:right;position: absolute;right: 76rpx;top: 208rpx" type="number"
+                value="{{standing_crop}}" name="standing_crop" bindblur="standing_crop"></input>
+              <view>L</view>
+            </view>
+            <view class="li">
+              <view>肥料浓度</view>
+              <view>{{concentration}}%</view>
+            </view>
+            <button class="btn" form-type="submit">确定修改</button>
+          </form>
+
+
+          <view class="list" wx:if="{{list}}">
+            <view class="top">
+              <view>全部施肥</view>
+              <view bindtap="checkall">点击操作</view>
+
+            </view>
+
+            <view class="bottom">
+              <view class="select" bindtap="select">
+                <view>选择大棚</view>
+                <view>
+                  <image class="img" src="/image/botton.png"></image>
+                </view>
+              </view>
+              <view wx:if="{{select}}">
+
+                <checkbox-group class="items" bindchange="checkboxChange">
+                  <label class="checkbox" wx:for="{{items}}" wx:key="name" class="item">
+                    <text>{{item.name}}</text>
+                    <checkbox class="checkbox" value="{{item.name}}" checked="{{item.checked}}"
+                      disabled="{{item.disabled}}" />
+                  </label>
+                </checkbox-group>
+
+                <view class="btn" bindtap="fertilize_start">
+                  确定施肥
+                </view>
+
+              </view>
+            </view>
+          </view>
+
+
+        </view>
+
+      </view>
+
+      <!-- 土地列表 -->
+      <view wx:for="{{data}}" wx:key="index" class="land_li" wx:for-item="land">
+<<<<<<< HEAD
+        <view class="top clearfix" data-id="{{index}}"  bindtap="clickButtton">
+          <view class="left">
+            <view class="land_p">{{land.nickName}}</view>
+          </view>
+          <view class="right">
+            <image class="down" src="/image/botton.png"></image>
+          </view>
+=======
+        <view class="head" data-id="{{index}}" bindtap="clickButtton">
+
+          <view>{{land.nickName}}</view>
+
+
+          <image class="down" src="/image/botton.png"></image>
+
+>>>>>>> java版
+        </view>
+
+
+        <!-- 设备列表 -->
+        <view class="{{uhide==index?'uhide':'hidden'}}">
+          <view wx:if="{{land.dbEquipmentVos.length != 0}}" wx:for="{{land.dbEquipmentVos}}" wx:for-item="equipment"
+<<<<<<< HEAD
+            wx:key="*this" class="equipment" style="display:{{equipment}}">
+            <view class="top clearfix" data-id="{{equipment.equipment.equipmentId}}">
+              <view class="left">
+                <view class="name">{{equipment.equipment.equipmentName}}</view>
+                <view class="land_p2">已运行{{equipment.already}}天/剩余{{equipment.surplus}}天</view>
+              </view>
+              <view class="right">
+                <view wx:if="{{equipment.equipment.isPause == 0}}">
+                  <view wx:if="{{equipment.equipment.isFault == 0}}">
+                    <image class="land_image" src="/image/yes.png"></image>
+                    <view class="land_sb">设备正常</view>
+                  </view>
+                  <view wx:elif="{{equipment.equipment.isFault == 1}}">
+                    <image class="land_image" src="/image/guzhang.png"></image>
+                    <view class="land_sb">设备故障</view>
+                  </view>
+                  <view wx:elif="{{equipment.equipment.isFault == 2}}">
+                    <image class="land_image" src="/image/diaoxian.png"></image>
+                    <view class="land_sb">设备掉线</view>
+=======
+            wx:for-index="e" wx:key="*this" class="equipment">
+            <view class="top clearfix" data-id="{{equipment.equipment.equipmentId}}" bindtap="listBtn"
+              data-index="{{index}}" data-e="{{e}}" data-isShow="{{equipment.isShow}}">
+              <view class="left">
+                <view class="name">{{equipment.equipment.equipmentName}}</view>
+                <view class="land_p2">已运行<label class="runtime">{{equipment.runtime}}</label>/剩余<label
+                    class="remaining">{{equipment.remaining}}</label></view>
+
+              </view>
+              <view class="right">
+                <view wx:if="{{equipment.equipment.isPause == 0}}">
+                  <view wx:if="{{equipment.equipment.isFault == 0 && equipment.equipment.isOnline == 0}}"
+                    bindtap="Automatic_state">
+                    <image class="land_image" src="/image/yes.png"></image>
+                    <view class="land_sb">自动状态</view>
+                  </view>
+                  <view wx:elif="{{equipment.equipment.isFault == 1}}" bindtap="guzhang">
+                    <image class="land_image" src="/image/guzhang.png"></image>
+                    <view class="land_sb">设备故障</view>
+                  </view>
+                  <view wx:elif="{{equipment.equipment.isFault == 0 && equipment.equipment.isOnline == 1}}"
+                    bindtap="manual_state">
+                    <image class="land_image" src="/image/diaoxian.png"></image>
+                    <view class="land_sb">手动状态</view>
+>>>>>>> java版
+                  </view>
+                </view>
+                <view wx:else>
+                  <image class="down" src="/image/botton.png"></image>
+                </view>
+              </view>
+            </view>
+
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> java版
+            <view class="bottom">
+
+              <!-- 棚内环境 -->
+              <view wx:if="{{equipment.dbTcpType.isShow == 0}}" class="shed clearfix">
+                <view class="title">— 当前棚内环境 —</view>
+<<<<<<< HEAD
+                <view class="boll_li one">
+                  <view class="ball">
+                    <view class="ball_min">
+                      <view class="ball_min_p">
+                        <text>温度</text>
+                      </view>
+                      <view class="ball_min_p">
+                        <text>{{equipment.dbTcpType.temperatureAir}}℃</text>
+                      </view>
+                    </view>
+                  </view>
+                </view>
+                <view class="boll_li tow">
+                  <view class="ball">
+                    <view class="ball_min">
+                      <view class="ball_min">
+                        <view class="ball_min_p">
+                          <text>湿度</text>
+                        </view>
+                        <view class="ball_min_p">
+                          <text>{{equipment.dbTcpType.humidityAir}}%</text>
+=======
+                <view style=" display: flex;justify-content: space-between;">
+                  <view class="boll_li one">
+                    <view class="ball">
+                      <view class="ball_min">
+                        <view class="ball_min_p">
+                          <text>温度</text>
+                        </view>
+                        <view class="ball_min_p">
+                          <text>{{equipment.dbTcpType.temperatureAir}}℃</text>
+>>>>>>> java版
+                        </view>
+                      </view>
+                    </view>
+                  </view>
+<<<<<<< HEAD
+                </view>
+                <view class="boll_li three">
+                  <view class="ball">
+                    <view class="ball_min">
+                      <view class="ball_min">
+                        <view class="ball_min_p">
+                          <text>光照</text>
+                        </view>
+                        <view class="ball_min_p">
+                          <text>{{equipment.dbTcpType.light}}Lux</text>
+=======
+                  <view class="boll_li tow">
+                    <view class="ball">
+                      <view class="ball_min">
+                        <view class="ball_min">
+                          <view class="ball_min_p">
+                            <text>湿度</text>
+                          </view>
+                          <view class="ball_min_p">
+                            <text>{{equipment.dbTcpType.humidityAir}}%</text>
+                          </view>
+>>>>>>> java版
+                        </view>
+                      </view>
+                    </view>
+                  </view>
+<<<<<<< HEAD
+                </view>
+                <view class="boll_li fore">
+                  <view class="ball">
+                    <view class="ball_min">
+                      <view class="ball_min">
+                        <view class="ball_min_p">
+                          <text>二氧化碳</text>
+                        </view>
+                        <view class="ball_min_p">
+                          <text>{{equipment.dbTcpType.co2}}%</text>
+=======
+                  <view class="boll_li three">
+                    <view class="ball">
+                      <view class="ball_min">
+                        <view class="ball_min">
+                          <view class="ball_min_p">
+                            <text>光照</text>
+                          </view>
+                          <view class="ball_min_p">
+                            <text>{{equipment.dbTcpType.light}}Lux</text>
+                          </view>
+                        </view>
+                      </view>
+                    </view>
+                  </view>
+                  <view class="boll_li fore">
+                    <view class="ball">
+                      <view class="ball_min">
+                        <view class="ball_min">
+                          <view class="ball_min_p">
+                            <text>二氧化碳</text>
+                          </view>
+                          <view class="ball_min_p">
+                            <text>{{equipment.dbTcpType.co2}}%</text>
+                          </view>
+>>>>>>> java版
+                        </view>
+                      </view>
+                    </view>
+                  </view>
+                </view>
+<<<<<<< HEAD
+=======
+
+>>>>>>> java版
+                <view class="tips">可参照以上数据，对种植作物种类，适当控制浇水、卷帘等设施</view>
+              </view>
+
+
+              <!-- 智能通风 -->
+              <view wx:if="{{equipment.dbTcpType.isShow == 0}}" class="Intelligent_ventilation">
+                <view class="title">— 智能通风 —</view>
+                <!-- 自动 -->
+                <view class="automatic" wx:if="{{equipment.dbTcpType.idAuto == isAuto}}">
+                  <view class="top">
+                    <view bindtap="change_automatic" data-id="{{equipment.equipment.equipmentId}}">
+                      <image class="zd_btn" src="/image/zidong.png"></image>
+                    </view>
+                    <view class="open_tuyere">
+
+<<<<<<< HEAD
+                      <input class="num" type="text" value="30℃"></input>
+=======
+                      <view class="num" bindtap="open">{{open}}℃</view>
+>>>>>>> java版
+
+                      <view class="jian">
+                        <image class="jiantou" src="/image/lvjiantou.png"></image>
+                      </view>
+                      <view class="text">开风口</view>
+                      <text>棚内达到左框温度将会自动开启通风</text>
+                    </view>
+<<<<<<< HEAD
+                    <view class="close_tuyere">
+                      <input class="num" type="text" value="30℃"></input>
+=======
+
+                    <view class="modal-mask" catchtouchmove="preventTouchMove" wx:if="{{change_open}}" bindtap="open_none"></view>
+                    <form class="detail" wx:if="{{change_open}}" bindsubmit="open_change" data-id="{{equipment.equipment.equipmentId}}">
+                      <view class="li">
+                        <view style="width:90rpx">温度:</view>
+                        <input style="text-align:center;" type="number" value="{{open}}" placeholder="请输入开风口温度"
+                          name="open"></input>
+                      </view>
+                      <button class="btn" form-type="submit">确定修改</button>
+                    </form>
+
+
+                    <view class="close_tuyere">
+                      <view class="num" bindtap="close">{{close}}℃</view>
+>>>>>>> java版
+                      <view class="jian">
+                        <image class="jiantou" src="/image/heijiantou.png"></image>
+                      </view>
+                      <view class="text">闭风口</view>
+                      <text>棚内达到左框温度将会自动关闭通风</text>
+                    </view>
+<<<<<<< HEAD
+=======
+
+                    <view class="modal-mask" catchtouchmove="preventTouchMove" wx:if="{{change_close}}" bindtap="close_none"></view>
+                    <form class="detail" wx:if="{{change_close}}" bindsubmit="close_change" data-id="{{equipment.equipment.equipmentId}}">
+                      <view class="li">
+                        <view style="width:90rpx">温度:</view>
+                        <input style="text-align:center;" type="number" value="{{close}}" placeholder="请输入开风口温度"
+                          name="close"></input>
+                      </view>
+                      <button class="btn" form-type="submit">确定修改</button>
+                    </form>
+>>>>>>> java版
+                  </view>
+                  <view class="explain">
+                    操作说明：自动控制状态下可以控制其他操作，“手动控制状态下”无法操作，需点击“手动控制”切换到“自动控制”
+                  </view>
+                  <view>点击通风</view>
+                  <view class="bottom">
+
+                    <view class="grey" bindtap="grey">
+
+                      <image src="/image/juanqihui.png" class="img"></image>
+
+                      <text>卷起</text>
+                    </view>
+                    <view class="grey" bindtap="grey">
+
+                      <image src="/image/zantinghui.png" class="img"></image>
+
+                      <text>暂停</text>
+                    </view>
+
+
+                    <view class="grey" bindtap="grey">
+
+                      <image src="/image/fangxiahui.png" class="img"></image>
+
+                      <text>放下</text>
+                    </view>
+<<<<<<< HEAD
+                    <view class="grey" bindtap="grey">
+
+                      <image src="/image/zantinghui.png" class="img"></image>
+
+                      <text>暂停</text>
+                    </view>
+=======
+>>>>>>> java版
+
+                  </view>
+                </view>
+
+<<<<<<< HEAD
+=======
+
+>>>>>>> java版
+                <!-- 手动 -->
+                <view class="manual" wx:else>
+                  <view class="top">
+                    <view bindtap="change_manual" data-id="{{equipment.equipment.equipmentId}}">
+                      <image class="zd_btn" src="/image/shoudong.png"></image>
+                    </view>
+                    <view class="open_tuyere">
+<<<<<<< HEAD
+                      <input disabled="true" class="num" type="text" value="30℃"></input>
+=======
+                      <view class="num">{{open}}℃</view>
+>>>>>>> java版
+                      <view class="jian">
+                        <image class="jiantou" src="/image/huijiantou.png"></image>
+                      </view>
+                      <view class="text">开风口</view>
+                      <text>棚内达到左框温度将会自动开启通风</text>
+                    </view>
+                    <view class="close_tuyere">
+<<<<<<< HEAD
+                      <input disabled="true" class="num" type="text" value="30℃"></input>
+=======
+                      <view class="num">{{close}}℃</view>
+>>>>>>> java版
+                      <view class="jian">
+                        <image class="jiantou" src="/image/huijiantou.png"></image>
+                      </view>
+                      <view class="text">闭风口</view>
+                      <text>棚内达到左框温度将会自动关闭通风</text>
+                    </view>
+                  </view>
+                  <view class="explain">
+                    操作说明：自动控制状态下可以控制其他操作，“手动控制状态下”无法操作，需点击“手动控制”切换到“自动控制”
+                  </view>
+                  <view>通风</view>
+                  <view class="bottom">
+
+<<<<<<< HEAD
+                    <view class="green" bindtap="roll_up" data-id="{{equipment.equipment.equipmentId}}">
+=======
+                    <view class="green" bindtap="roll_up" data-id="{{equipment.equipment.equipmentId}}"
+                      data-online="{{equipment.equipment.isOnline}}">
+>>>>>>> java版
+
+                      <image src="/image/juanqi.png" class="img"></image>
+
+                      <text>卷起</text>
+                    </view>
+<<<<<<< HEAD
+                    <view class="yellow" bindtap="roll_stop" data-id="{{equipment.equipment.equipmentId}}">
+=======
+                    <view class="yellow" bindtap="roll_stop" data-id="{{equipment.equipment.equipmentId}}"
+                      data-online="{{equipment.equipment.isOnline}}">
+>>>>>>> java版
+
+                      <image src="/image/zanting.png" class="img"></image>
+
+                      <text>暂停</text>
+                    </view>
+
+
+<<<<<<< HEAD
+                    <view class="green" bindtap="down" data-id="{{equipment.equipment.equipmentId}}">
+=======
+                    <view class="green" bindtap="lay_down" data-id="{{equipment.equipment.equipmentId}}"
+                      data-online="{{equipment.equipment.isOnline}}">
+>>>>>>> java版
+
+                      <image src="/image/fangxia.png" class="img"></image>
+
+                      <text>放下</text>
+                    </view>
+<<<<<<< HEAD
+                    <view class="yellow" bindtap="down_stop" data-id="{{equipment.equipment.equipmentId}}">
+
+                      <image src="/image/zanting.png" class="img"></image>
+
+                      <text>暂停</text>
+                    </view>
+=======
+
+>>>>>>> java版
+
+                  </view>
+                </view>
+
+
+              </view>
+
+              <!-- 控制设备 -->
+<<<<<<< HEAD
+              <view wx:if="{{equipment.equipment.isOnline == 0}}" class="handlerText">
+=======
+              <view wx:if="{{equipment.equipment.pojos.length != 0}}" class="handlerText">
+>>>>>>> java版
+                <view class="title">— 控制设备 —</view>
+                <view class="control_ul">
+                  <view wx:for="{{equipment.equipment.pojos}}" wx:key="*this" wx:for-item="items" wx:for-index="i"
+                    class="control_li">
+                    <view class="top">{{items.checkName}}</view>
+                    <view class="clearfix control_k">
+                      <view wx:if="{{items.spList.length == 4}}" class="Action_items">
+                        <view wx:for="{{items.spList}}" wx:key="index" wx:for-item="self" wx:for-index="j">
+
+                          <view wx:if="{{self.handleName == 'start'}}" class="green" bindtap="start"
+                            data-id="{{equipment.equipment.equipmentId}}" data-name="{{items.checkName}}"
+<<<<<<< HEAD
+                            data-text="{{self.handleCode}}" data-handleName="{{self.handleName}}">
+=======
+                            data-code="{{items.checkCode}}" data-text="{{self.handleCode}}"
+                            data-handleName="{{self.handleName}}" data-isAuto="{{equipment.dbTcpType.idAuto}}"
+                            data-online="{{equipment.equipment.isOnline}}">
+>>>>>>> java版
+
+                            <image src="/image/juanqi.png" class="img"></image>
+
+                            <text>卷起</text>
+                          </view>
+<<<<<<< HEAD
+                          <view wx:elif="{{self.handleName == 'start_stop'}}" class="yellow" bindtap="start_stop"
+                            data-id="{{equipment.equipment.equipmentId}}" data-name="{{items.checkName}}"
+                            data-text="{{self.handleCode}}" data-handleName="{{self.handleName}}">
+=======
+                          <view wx:if="{{self.handleName == 'start_stop'}}" class="yellow" bindtap="start_stop"
+                            data-id="{{equipment.equipment.equipmentId}}" data-name="{{items.checkName}}"
+                            data-code="{{items.checkCode}}" data-text="{{self.handleCode}}"
+                            data-handleName="{{self.handleName}}" data-isAuto="{{equipment.dbTcpType.idAuto}}"
+                            data-online="{{equipment.equipment.isOnline}}">
+>>>>>>> java版
+
+                            <image src="/image/zanting.png" class="img"></image>
+
+                            <text>暂停</text>
+                          </view>
+
+                          <view wx:if="{{self.handleName == 'down'}}" class="green" bindtap="down"
+                            data-id="{{equipment.equipment.equipmentId}}" data-name="{{items.checkName}}"
+<<<<<<< HEAD
+                            data-text="{{self.handleCode}}" data-handleName="{{self.handleName}}">
+=======
+                            data-code="{{items.checkCode}}" data-text="{{self.handleCode}}"
+                            data-handleName="{{self.handleName}}" data-isAuto="{{equipment.dbTcpType.idAuto}}"
+                            data-online="{{equipment.equipment.isOnline}}">
+>>>>>>> java版
+
+                            <image src="/image/fangxia.png" class="img"></image>
+
+                            <text>放下</text>
+                          </view>
+
+                          <view wx:if="{{self.handleName == 'down_stop'}}" class="yellow" bindtap="down_stop"
+                            data-id="{{equipment.equipment.equipmentId}}" data-name="{{items.checkName}}"
+<<<<<<< HEAD
+                            data-text="{{self.handleCode}}" data-handleName="{{self.handleName}}">
+=======
+                            data-code="{{items.checkCode}}" data-text="{{self.handleCode}}"
+                            data-handleName="{{self.handleName}}" data-isAuto="{{equipment.dbTcpType.idAuto}}"
+                            data-online="{{equipment.equipment.isOnline}}">
+
+                            <image src="/image/zanting.png" class="img"></image>
+
+                            <text>暂停</text>
+                          </view>
+                        </view>
+
+
+
+                      </view>
+
+
+                      <view wx:if="{{items.spList.length == 3}}" class="Action_items">
+                        <view wx:for="{{items.spList}}" wx:key="index" wx:for-item="self" wx:for-index="j">
+
+                          <view wx:if="{{self.handleName == 'start'}}" class="green" bindtap="start_three"
+                            data-id="{{equipment.equipment.equipmentId}}" data-name="{{items.checkName}}"
+                            data-code="{{items.checkCode}}" data-text="{{self.handleCode}}"
+                            data-handleName="{{self.handleName}}" data-isAuto="{{equipment.dbTcpType.idAuto}}"
+                            data-online="{{equipment.equipment.isOnline}}">
+
+                            <image src="/image/juanqi.png" class="img"></image>
+
+                            <text>卷起</text>
+                          </view>
+                          <view wx:if="{{self.handleName == 'start_stop'}}" class="yellow" bindtap="start_stop_three"
+                            data-id="{{equipment.equipment.equipmentId}}" data-name="{{items.checkName}}"
+                            data-code="{{items.checkCode}}" data-text="{{self.handleCode}}"
+                            data-handleName="{{self.handleName}}" data-isAuto="{{equipment.dbTcpType.idAuto}}"
+                            data-online="{{equipment.equipment.isOnline}}">
+>>>>>>> java版
+
+                            <image src="/image/zanting.png" class="img"></image>
+
+                            <text>暂停</text>
+                          </view>
+<<<<<<< HEAD
+=======
+
+                          <view wx:if="{{self.handleName == 'down'}}" class="green" bindtap="down_three"
+                            data-id="{{equipment.equipment.equipmentId}}" data-name="{{items.checkName}}"
+                            data-code="{{items.checkCode}}" data-text="{{self.handleCode}}"
+                            data-handleName="{{self.handleName}}" data-isAuto="{{equipment.dbTcpType.idAuto}}"
+                            data-online="{{equipment.equipment.isOnline}}">
+
+                            <image src="/image/fangxia.png" class="img"></image>
+
+                            <text>放下</text>
+                          </view>
+
+
+>>>>>>> java版
+                        </view>
+
+
+
+                      </view>
+
+
+
+                      <view wx:if="{{items.spList.length == 2}}" class="Action_items">
+                        <view wx:for="{{items.spList}}" wx:key="index" wx:for-item="two" wx:for-index="n">
+                          <view wx:if="{{two.handleName == 'start'}}" class="green" bindtap="start_two"
+                            data-id="{{equipment.equipment.equipmentId}}" data-name="{{items.checkName}}"
+<<<<<<< HEAD
+                            data-text="{{two.handleCode}}" data-handleName="{{two.handleName}}">
+=======
+                            data-code="{{items.checkCode}}" data-text="{{two.handleCode}}"
+                            data-handleName="{{two.handleName}}" data-isAuto="{{equipment.dbTcpType.idAuto}}"
+                            data-online="{{equipment.equipment.isOnline}}">
+>>>>>>> java版
+
+                            <image src="/image/juanqi.png" class="img"></image>
+
+                            <text>开始</text>
+                          </view>
+                          <view wx:if="{{two.handleName == 'start_stop'}}" class="yellow" bindtap="start_stop_two"
+                            data-id="{{equipment.equipment.equipmentId}}" data-name="{{items.checkName}}"
+<<<<<<< HEAD
+                            data-text="{{two.handleCode}}" data-handleName="{{two.handleName}}">
+
+                            <image src="/image/zanting.png" class="img"></image>
+
+                            <text>暂停</text>
+=======
+                            data-code="{{items.checkCode}}" data-text="{{two.handleCode}}"
+                            data-handleName="{{two.handleName}}" data-isAuto="{{equipment.dbTcpType.idAuto}}"
+                            data-online="{{equipment.equipment.isOnline}}">
+
+                            <image src="/image/zanting.png" class="img"></image>
+
+                            <text>关闭</text>
+>>>>>>> java版
+                          </view>
+                        </view>
+
+                      </view>
+                    </view>
+                  </view>
+                </view>
+              </view>
+            </view>
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> java版
+            <!-- bottom结束 -->
+
+          </view>
+          <!-- 设备列表结束 -->
+        </view>
+      </view>
+      <!-- 土地列表结束 -->
+    </view>
+  </view>
+</view>
